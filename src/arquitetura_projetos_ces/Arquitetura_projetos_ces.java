@@ -5,11 +5,13 @@
  */
 package arquitetura_projetos_ces;
 
+import Controller.AluguelController;
 import Dto.ContratoCarroGrande;
 import Dto.HistoricoDto;
 import Enum.ContratoEnum;
 import Factory.ContratoFactory;
 import Factory.IContrato;
+import Model.Cliente;
 import Model.Contrato;
 import Singleton.HistoricoSingleton;
 import java.util.Date;
@@ -60,6 +62,12 @@ public class Arquitetura_projetos_ces {
             
         });
         
+        System.out.println("AJUDOU");
+        Cliente cliente = new Cliente("cnh", 25,27);
+        AluguelController aluguelController = new AluguelController();
+        System.out.println(
+        aluguelController.alugarVeiculo(cliente, ContratoEnum.CONTRATO_CARRO_MEDIO)
+        );
     }
     
 }
