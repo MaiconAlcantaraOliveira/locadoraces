@@ -33,7 +33,7 @@ public final class HistoricoSingleton {
     }
     
     public void setItemHistorico(HistoricoDto itemHistorico){
-        System.out.println(itemHistorico.getModeloCarro());
+        //System.out.println(itemHistorico.getModeloCarro());
         this.itensHistorico.add(itemHistorico);
     }
 

@@ -8,6 +8,15 @@ public class Cliente extends Pessoa{
     private Integer idade;
     private Integer pontosCarteira;
 
+    public Cliente(String cnh, Integer idade, Integer pontosCarteira, String nome, String cpf) {
+        super(nome, cpf);
+        this.cnh = cnh;
+        this.idade = idade;
+        this.pontosCarteira = pontosCarteira;
+    }
+    
+    
+
     public Cliente(String cnh, Integer idade, Integer pontosCarteira) {
         this.cnh = cnh;
         this.idade = idade;

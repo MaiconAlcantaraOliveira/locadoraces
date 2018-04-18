@@ -18,7 +18,7 @@ public class ContratoCarroMedio extends Contrato implements IContrato {
     public Contrato gerarContrato() {
         System.out.println("CARRO MEDIO"); 
         Contrato c = new Contrato();
-        c.setTaxaCarro(20.2);
+        c.setTaxaCarro(30.3);
         c.setSeguro(40);
         return c;    
     }

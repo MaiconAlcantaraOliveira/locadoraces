@@ -33,22 +33,32 @@ public class Arquitetura_projetos_ces {
             
             IContrato c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_GRANDE);;
             Contrato c = c1.gerarContrato();
-            System.out.println(c);
+            System.out.println("\n");
             
             c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_MEDIO);
             c = c1.gerarContrato();
-            System.out.println(c);
+            System.out.println("\n");
             
             c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_PEQUENO);
             c = c1.gerarContrato();
-            System.out.println(c);
+            System.out.println("\n");
             
-            // SINGLETON
             
-        HistoricoSingleton.obterInstanciaHistorio().setItemHistorico(new HistoricoDto("no main", "madeira", "vovo", new Date()));
+        //CONTROLLER
+        System.out.println("CONTROLLER");
+        Cliente cliente = new Cliente("cnh",25,15, "jout jout","cpf");
+        AluguelController aluguelController = new AluguelController();
+        System.out.println(
+            aluguelController.alugarVeiculo(cliente, ContratoEnum.CONTRATO_CARRO_MEDIO)
+        );
+            
+        // SINGLETON
+        HistoricoSingleton.obterInstanciaHistorio()
+                .setItemHistorico(new HistoricoDto("no main", "madeira", "vovo", new Date()));
  
         //Caso tenha dois itens no historicos, singleton esta ok 
-        System.out.println("itens historico: " + HistoricoSingleton.obterInstanciaHistorio().getItensHistorico().size());
+        System.out.println("itens historico: " + HistoricoSingleton.obterInstanciaHistorio()
+                                                 .getItensHistorico().size());
         
         HistoricoSingleton.obterInstanciaHistorio().getItensHistorico().forEach((t) -> {
             System.out.println("\n");
@@ -58,16 +68,9 @@ public class Arquitetura_projetos_ces {
               System.out.println("novCliente: " + t.getNomeCliente());
                System.out.println("novaData: " + t.getDataLocacao());
                 System.out.println("#################");
-
-            
         });
         
-        System.out.println("AJUDOU");
-        Cliente cliente = new Cliente("cnh", 25,27);
-        AluguelController aluguelController = new AluguelController();
-        System.out.println(
-        aluguelController.alugarVeiculo(cliente, ContratoEnum.CONTRATO_CARRO_MEDIO)
-        );
+
     }
     
 }
