@@ -13,6 +13,7 @@ import Factory.ContratoFactory;
 import Factory.IContrato;
 import Model.Cliente;
 import Model.Contrato;
+import Model.Funcionario;
 import Singleton.HistoricoSingleton;
 import java.util.Date;
 
@@ -69,6 +70,21 @@ public class Arquitetura_projetos_ces {
                System.out.println("novaData: " + t.getDataLocacao());
                 System.out.println("#################");
         });
+        
+        
+        //Strategy
+        Funcionario fun1 = new Funcionario();
+        fun1.setNome("Guilherme");
+        fun1.setCargo("Funcionario");
+        fun1.setSalarioBase(4000);
+        fun1.determinarEstrategiaDeCalculo();
+	System.out.println("Salário final do "+fun1.getCargo()+" "+fun1.getNome()+": "+fun1.calcularSalarioComImposto());
+	Funcionario fun2 = new Funcionario();
+        fun2.setNome("Vinicius");
+        fun2.setCargo("Gerente");
+        fun2.setSalarioBase(4000);
+        fun2.determinarEstrategiaDeCalculo();
+        System.out.println("Salário final do "+fun2.getCargo()+" "+fun2.getNome()+": "+fun2.calcularSalarioComImposto());
         
 
     }
