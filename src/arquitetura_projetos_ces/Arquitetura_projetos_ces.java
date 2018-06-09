@@ -5,6 +5,9 @@
  */
 package arquitetura_projetos_ces;
 
+import Command.PagamentoBoleto;
+import Command.PagamentoCartaoCredito;
+import Command.PagamentoCartaoDebito;
 import Controller.AluguelController;
 import Dto.ContratoCarroGrande;
 import Dto.HistoricoDto;
@@ -87,6 +90,15 @@ public class Arquitetura_projetos_ces {
         System.out.println("Salário final do "+fun2.getCargo()+" "+fun2.getNome()+": "+fun2.calcularSalarioComImposto());
         
 
+        //Command
+        cliente.executarCompra(99.00, new PagamentoCartaoCredito());
+        Cliente cliente2 = new Cliente("cnh",25,15, "Maicon","cpf");
+        cliente2.executarCompra(120.00, new PagamentoBoleto());
+        Cliente cliente3 = new Cliente("cnh",25,15, "Teste","cpf");
+        cliente3.executarCompra(140.00, new PagamentoCartaoDebito());
+        
+        
+        
     }
     
 }

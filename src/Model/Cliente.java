@@ -1,6 +1,8 @@
 
 package Model;
 
+import Command.PagamentoCommand;
+
 
 public class Cliente extends Pessoa{
     
@@ -58,6 +60,15 @@ public class Cliente extends Pessoa{
     public Boolean hasPermissaoParaDirigir() {
         return this.pontosCarteira < 25;
     } 
+    
+    
+    
+    //Command
+    public void executarCompra(double valor, PagamentoCommand formaDePagamento) {
+	Compra compra = new Compra(this);
+	compra.setValor(valor);
+	formaDePagamento.processarCompra(compra);
+    }
     
 
 }
