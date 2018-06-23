@@ -1,8 +1,8 @@
 package Model;
 
-import strategy.CalculaImpostoFuncionario;
-import strategy.CalculoImpostoQuinzeOuDez;
-import strategy.CalculoImpostoVinteOuQuinze;
+import Strategy.CalculaImpostoFuncionario;
+import Strategy.CalculoImpostoQuinzeOuDez;
+import Strategy.CalculoImpostoVinteOuQuinze;
 
 
 public class Funcionario extends Pessoa{
@@ -47,7 +47,7 @@ public class Funcionario extends Pessoa{
     public void determinarEstrategiaDeCalculo(){
         double base = getSalarioBase();
         if(getCargo().equals("Gerente")){
-            estrategiaDeCalculo = new CalculoImpostoQuinzeOuDez();  
+            estrategiaDeCalculo = new CalculoImpostoQuinzeOuDez();
         }
         else if(getCargo().equals("Funcionario")){
             estrategiaDeCalculo = new CalculoImpostoVinteOuQuinze();

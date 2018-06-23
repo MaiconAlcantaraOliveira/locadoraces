@@ -9,8 +9,9 @@ import Command.PagamentoBoleto;
 import Command.PagamentoCartaoCredito;
 import Command.PagamentoCartaoDebito;
 import Controller.AluguelController;
-import Dto.ContratoCarroGrande;
+import Dto.ContratoDto;
 import Dto.HistoricoDto;
+import Dto.TextoContrato;
 import Enum.ContratoEnum;
 import Factory.ContratoFactory;
 import Factory.IContrato;
@@ -20,15 +21,8 @@ import Model.Funcionario;
 import Singleton.HistoricoSingleton;
 import java.util.Date;
 
-/**
- *
- * @author Sam
- */
 public class Arquitetura_projetos_ces {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
             ContratoFactory contratoFactory = new ContratoFactory();
             
@@ -76,21 +70,33 @@ public class Arquitetura_projetos_ces {
         
         /*
         //Strategy
+        System.out.println("\n");
+        System.out.println("##########################################");
+        System.out.println("##################### Strategy");
         Funcionario fun1 = new Funcionario();
         fun1.setNome("Guilherme");
         fun1.setCargo("Funcionario");
         fun1.setSalarioBase(4000);
         fun1.determinarEstrategiaDeCalculo();
-	System.out.println("Salário final do "+fun1.getCargo()+" "+fun1.getNome()+": "+fun1.calcularSalarioComImposto());
-	Funcionario fun2 = new Funcionario();
+        System.out.println("Salário final do "+fun1.getCargo()+" "+fun1.getNome()+": "+fun1.calcularSalarioComImposto());
+        Funcionario fun2 = new Funcionario();
         fun2.setNome("Vinicius");
         fun2.setCargo("Gerente");
         fun2.setSalarioBase(4000);
         fun2.determinarEstrategiaDeCalculo();
         System.out.println("Salário final do "+fun2.getCargo()+" "+fun2.getNome()+": "+fun2.calcularSalarioComImposto());
+        Funcionario fun3 = new Funcionario();
+        fun3.setNome("Rafael");
+        fun3.setCargo("Sem cargo");
+        fun3.setSalarioBase(4000);
+        fun3.determinarEstrategiaDeCalculo();
+        System.out.println("Salário final do "+fun3.getCargo()+" "+fun3.getNome()+": "+ fun3.getSalarioBase());
         
 
         //Command
+        System.out.println("\n");
+        System.out.println("##########################################");
+        System.out.println("##################### Command");
         cliente.executarCompra(99.00, new PagamentoCartaoCredito());
         Cliente cliente2 = new Cliente("cnh",25,15, "Maicon","cpf");
         cliente2.executarCompra(120.00, new PagamentoBoleto());
@@ -114,6 +120,26 @@ public class Arquitetura_projetos_ces {
         Cliente clienteT2 = new Cliente("cnh",25,15, "Maicon","cpf");
         clienteT2.executarLocacao(550, cT2, new Command.LocacaoPagamentoCartaoDebito());
         
+
+
+        //Memento
+        System.out.println("\n");
+        System.out.println("##########################################");
+        System.out.println("##################### MEMENTO");
+        TextoContrato textoContrato = new TextoContrato();
+        textoContrato.escreverTexto("Primeira linha do texto do contrato \n");
+        textoContrato.escreverTexto("Segunda linha do texto do contrato\n");
+        textoContrato.escreverTexto("Terceira linha do texto do contrato\n");
+        textoContrato.mostrarTexto();
+        textoContrato.desfazerEscrita();
+        textoContrato.mostrarTexto();
+        textoContrato.desfazerEscrita();
+        textoContrato.mostrarTexto();
+        textoContrato.desfazerEscrita();
+        textoContrato.mostrarTexto();
+        textoContrato.desfazerEscrita();
+        textoContrato.mostrarTexto();
+
     }
     
 }

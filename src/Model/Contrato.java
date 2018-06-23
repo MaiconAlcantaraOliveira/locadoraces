@@ -6,26 +6,26 @@
 package Model;
 
 import Factory.IContrato;
+import Memento.ContratoCareTaker;
 
-/**
- *
- * @author Sam
- */
 public class Contrato{
     
     private String titulo;
     private String nomeFuncionario;
     private String nomeCliente;
     private Double taxaCarro;
-    private Integer seguro; 
+    private Integer seguro;
+    ContratoCareTaker careTaker;
 
     public Contrato(String titulo, String nomeFuncionario, String nomeCliente) {
+        this.careTaker = new ContratoCareTaker();
         this.titulo = titulo;
         this.nomeFuncionario = nomeFuncionario;
         this.nomeCliente = nomeCliente;
     }
 
     public Contrato() {
+        this.careTaker = new ContratoCareTaker();
     }
 
     public String getTitulo() {
@@ -67,9 +67,15 @@ public class Contrato{
     public void setSeguro(Integer seguro) {
         this.seguro = seguro;
     }
-    
-    
-    
-    
 
+    @Override
+    public String toString() {
+        return "Contrato{" +
+                "titulo='" + titulo + '\'' +
+                ", nomeFuncionario='" + nomeFuncionario + '\'' +
+                ", nomeCliente='" + nomeCliente + '\'' +
+                ", taxaCarro=" + taxaCarro +
+                ", seguro=" + seguro +
+                '}';
+    }
 }

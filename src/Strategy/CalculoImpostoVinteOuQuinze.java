@@ -3,15 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package strategy;
+package Strategy;
 
 import Model.Funcionario;
 
-/**
- *
- * @author Guilherme
- */
-public class CalculoImpostoVinteOuQuinze implements CalculaImpostoFuncionario{
+public class CalculoImpostoVinteOuQuinze implements CalculaImpostoFuncionario {
     @Override
     public double calculaSalarioComImposto(Funcionario umFuncionario) {
         if (umFuncionario.getSalarioBase() > 3500) {
