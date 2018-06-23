@@ -74,7 +74,7 @@ public class Arquitetura_projetos_ces {
                 System.out.println("#################");
         });
         
-        
+        /*
         //Strategy
         Funcionario fun1 = new Funcionario();
         fun1.setNome("Guilherme");
@@ -96,8 +96,23 @@ public class Arquitetura_projetos_ces {
         cliente2.executarCompra(120.00, new PagamentoBoleto());
         Cliente cliente3 = new Cliente("cnh",25,15, "Teste","cpf");
         cliente3.executarCompra(140.00, new PagamentoCartaoDebito());
+        */
         
         
+        //Strategy + Command
+        //Ainda não está 100% implementado o main
+        Model.Carro cT = new Model.Carro(); //carro de teste, a ideia é pegar um carro já instanciado previamente, mas aqui estou instanciando um novo apenas para fazer o código funcionar
+        cT.setCategoria("A"); //categoria para poder calcular o desconto do carro
+        cT.setPlaca("1234F");
+        Cliente clienteT = new Cliente("cnh",25,15, "Teste","cpf"); //cliente de teste, a ideia é pegar um cliente já instanciando previamente, assim como no carro
+        clienteT.executarLocacao(200, cT, new Command.LocacaoPagamentoCartaoCredito());
+        
+        //exemplo 2
+        Model.Carro cT2 = new Model.Carro();
+        cT2.setCategoria("C");
+        cT2.setPlaca("F4321");
+        Cliente clienteT2 = new Cliente("cnh",25,15, "Maicon","cpf");
+        clienteT2.executarLocacao(550, cT2, new Command.LocacaoPagamentoCartaoDebito());
         
     }
     

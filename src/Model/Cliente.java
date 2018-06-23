@@ -1,14 +1,15 @@
 
 package Model;
 
+import Command.LocacaoPagamentoCommand;
 import Command.PagamentoCommand;
 
 
 public class Cliente extends Pessoa{
     
    private String cnh;
-    private Integer idade;
-    private Integer pontosCarteira;
+   private Integer idade;
+   private Integer pontosCarteira;
 
     public Cliente(String cnh, Integer idade, Integer pontosCarteira, String nome, String cpf) {
         super(nome, cpf);
@@ -62,12 +63,23 @@ public class Cliente extends Pessoa{
     } 
     
     
-    
+    /*
     //Command
     public void executarCompra(double valor, PagamentoCommand formaDePagamento) {
 	Compra compra = new Compra(this);
 	compra.setValor(valor);
 	formaDePagamento.processarCompra(compra);
+    }*/
+    
+    
+    //Command
+    public void executarLocacao(double precoBase, Carro carro, LocacaoPagamentoCommand formaDePagamento){
+        Locacao loca = new Locacao();
+        loca.setCarro(carro);
+        loca.setPrecoBase(precoBase);
+        loca.setCliente(this);
+        loca.determinarEstrategiaDeCalculo();
+        formaDePagamento.processarLocacao(loca);
     }
     
 
