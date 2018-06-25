@@ -16,12 +16,17 @@ import Strategy.CalculoDescontoVinteOuQuinze;
  * @author Guilherme
  */
 public class Locacao {
+    private String id;
     private Carro carro;
     private double precoBase;
     private Cliente cliente;
     
     public Locacao(){
         
+    }
+
+    public Locacao(String id){
+        this.id = id;
     }
     
     
@@ -92,6 +97,15 @@ public class Locacao {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "\n" +"Locacao{" +
+                "id='" + id + '\'' +
+                ", carro=" + carro +
+                ", precoBase=" + precoBase +
+                ", cliente=" + cliente +
+                ", estrategiaDeCalculo=" + estrategiaDeCalculo + "" +
+                '}';
+    }
 }

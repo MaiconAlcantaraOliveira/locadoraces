@@ -73,14 +73,31 @@ public class Cliente extends Pessoa{
     
     
     //Command
-    public void executarLocacao(double precoBase, Carro carro, LocacaoPagamentoCommand formaDePagamento){
-        Locacao loca = new Locacao();
+//    public void executarLocacao(double precoBase, Carro carro, LocacaoPagamentoCommand formaDePagamento){
+//        Locacao loca = new Locacao();
+//        loca.setCarro(carro);
+//        loca.setPrecoBase(precoBase);
+//        loca.setCliente(this);
+//        loca.determinarEstrategiaDeCalculo();
+//        formaDePagamento.processarLocacao(loca);
+//    }
+
+    public Locacao executarLocacao(double precoBase, Carro carro, LocacaoPagamentoCommand formaDePagamento){
+        Locacao loca = new Locacao("");
         loca.setCarro(carro);
         loca.setPrecoBase(precoBase);
         loca.setCliente(this);
         loca.determinarEstrategiaDeCalculo();
         formaDePagamento.processarLocacao(loca);
+        return loca;
     }
-    
 
+    @Override
+    public String toString() {
+        return "\n" + "Cliente{" +
+                "cnh='" + cnh + '\'' +
+                ", idade=" + idade +
+                ", pontosCarteira=" + pontosCarteira + "" +
+                '}';
+    }
 }

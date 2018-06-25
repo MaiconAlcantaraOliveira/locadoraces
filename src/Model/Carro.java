@@ -96,5 +96,16 @@ public class Carro implements ICarro{
     public String exibirInformacoesContratoCarro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public String toString() {
+        return "\n" +"Carro{" +
+                "modelo='" + modelo + '\'' +
+                ", anoCarro='" + anoCarro + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", placa='" + placa + '\'' +
+                ", cor='" + cor + '\'' +
+                ", multaVeiculo=" + multaVeiculo +
+                '}';
+    }
 }

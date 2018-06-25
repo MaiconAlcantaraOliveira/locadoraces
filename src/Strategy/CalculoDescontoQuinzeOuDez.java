@@ -7,18 +7,22 @@ package Strategy;
 
 import Model.Locacao;
 
-/**
- *
- * @author Guilherme
- */
 public class CalculoDescontoQuinzeOuDez implements CalculaDescontoLocacao {
+
+    private Double valor;
     
     @Override
     public double calculaPrecoComDesconto(Locacao umaLoca) {
         if (umaLoca.getPrecoBase() > 200) {
-            return umaLoca.getPrecoBase() * 0.85;
+            valor = umaLoca.getPrecoBase() * 0.85;
+            return valor;
         }
-            return umaLoca.getPrecoBase() * 0.9;
+            valor = umaLoca.getPrecoBase() * 0.9;
+            return valor;
     }
-    
+
+    @Override
+    public String toString() {
+        return valor.toString();
+    }
 }

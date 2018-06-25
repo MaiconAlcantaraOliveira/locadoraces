@@ -12,11 +12,23 @@ import Model.Locacao;
  * @author Guilherme
  */
 public class CalculoDescontoVinteOuQuinze implements CalculaDescontoLocacao {
+
+    private Double valor;
+
     @Override
     public double calculaPrecoComDesconto(Locacao umaLoca) {
         if (umaLoca.getPrecoBase() > 500) {
-            return umaLoca.getPrecoBase() * 0.8;
+            valor = umaLoca.getPrecoBase() * 0.8;
+            return valor;
         }
+            valor = umaLoca.getPrecoBase() * 0.85;
             return umaLoca.getPrecoBase() * 0.85;
+    }
+
+    @Override
+    public String toString() {
+        return "CalculoDescontoVinteOuQuinze{" +
+                "valor=" + valor +
+                '}';
     }
 }

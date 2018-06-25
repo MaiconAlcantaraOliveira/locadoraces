@@ -5,19 +5,15 @@
  */
 package arquitetura_projetos_ces;
 
-import Command.PagamentoBoleto;
-import Command.PagamentoCartaoCredito;
-import Command.PagamentoCartaoDebito;
 import Controller.AluguelController;
-import Dto.ContratoDto;
 import Dto.HistoricoDto;
 import Dto.TextoContrato;
 import Enum.ContratoEnum;
 import Factory.ContratoFactory;
 import Factory.IContrato;
-import Model.Cliente;
-import Model.Contrato;
-import Model.Funcionario;
+import Memento.LocacaoCareTaker;
+import Memento.OriginatorLocacao;
+import Model.*;
 import Singleton.HistoricoSingleton;
 import java.util.Date;
 
@@ -107,38 +103,72 @@ public class Arquitetura_projetos_ces {
         
         //Strategy + Command
         //Ainda não está 100% implementado o main
-        Model.Carro cT = new Model.Carro(); //carro de teste, a ideia é pegar um carro já instanciado previamente, mas aqui estou instanciando um novo apenas para fazer o código funcionar
+        Carro cT = new Carro(); //carro de teste, a ideia é pegar um carro já instanciado previamente, mas aqui estou instanciando um novo apenas para fazer o código funcionar
         cT.setCategoria("A"); //categoria para poder calcular o desconto do carro
         cT.setPlaca("1234F");
         Cliente clienteT = new Cliente("cnh",25,15, "Teste","cpf"); //cliente de teste, a ideia é pegar um cliente já instanciando previamente, assim como no carro
-        clienteT.executarLocacao(200, cT, new Command.LocacaoPagamentoCartaoCredito());
+        Locacao locacaoUm =
+                clienteT.executarLocacao(200, cT, new Command.LocacaoPagamentoCartaoCredito());
         
         //exemplo 2
-        Model.Carro cT2 = new Model.Carro();
+        Carro cT2 = new Carro();
         cT2.setCategoria("C");
         cT2.setPlaca("F4321");
         Cliente clienteT2 = new Cliente("cnh",25,15, "Maicon","cpf");
+        Locacao locacaoDois =
         clienteT2.executarLocacao(550, cT2, new Command.LocacaoPagamentoCartaoDebito());
         
 
 
         //Memento
+//        System.out.println("\n");
+//        System.out.println("##########################################");
+//        System.out.println("##################### MEMENTO");
+//        TextoContrato textoContrato = new TextoContrato();
+//        textoContrato.escreverTexto("Primeira linha do texto do contrato \n");
+//        textoContrato.escreverTexto("Segunda linha do texto do contrato\n");
+//        textoContrato.escreverTexto("Terceira linha do texto do contrato\n");
+//        textoContrato.mostrarTexto();
+//        textoContrato.desfazerEscrita();
+//        textoContrato.mostrarTexto();
+//        textoContrato.desfazerEscrita();
+//        textoContrato.mostrarTexto();
+//        textoContrato.desfazerEscrita();
+//        textoContrato.mostrarTexto();
+//        textoContrato.desfazerEscrita();
+//        textoContrato.mostrarTexto();
+
+
+        //Memento utilizando Locacao do Strategy + command
         System.out.println("\n");
         System.out.println("##########################################");
         System.out.println("##################### MEMENTO");
-        TextoContrato textoContrato = new TextoContrato();
-        textoContrato.escreverTexto("Primeira linha do texto do contrato \n");
-        textoContrato.escreverTexto("Segunda linha do texto do contrato\n");
-        textoContrato.escreverTexto("Terceira linha do texto do contrato\n");
-        textoContrato.mostrarTexto();
-        textoContrato.desfazerEscrita();
-        textoContrato.mostrarTexto();
-        textoContrato.desfazerEscrita();
-        textoContrato.mostrarTexto();
-        textoContrato.desfazerEscrita();
-        textoContrato.mostrarTexto();
-        textoContrato.desfazerEscrita();
-        textoContrato.mostrarTexto();
+
+        OriginatorLocacao originator = new OriginatorLocacao();
+        LocacaoCareTaker careTaker = new LocacaoCareTaker();
+
+        originator.setEstadoLocacao(new Locacao("Stub locacao"));
+        originator.setEstadoLocacao(locacaoUm);
+        careTaker.add(originator.salvarEstadoLocacaoMemento());
+
+        originator.setEstadoLocacao(locacaoDois);
+        careTaker.add(originator.salvarEstadoLocacaoMemento());
+
+        originator.setEstadoLocacao(new Locacao("stub locacao Dois"));
+        System.out.println("Estado Atual: " + originator.getEstadoLocacao());
+//
+//        originator.getEstadoLocacaoMemento(careTaker.get(0));
+//        System.out.println("Primeiro Estado Salvo: " + originator.getEstadoLocacao());
+//        originator.getEstadoLocacaoMemento(careTaker.get(1));
+//        System.out.println("Segundo estado salvo: " + originator.getEstadoLocacao());
+
+        System.out.println("\n############");
+        System.out.println("Todos estados de locacoes salvos");
+        careTaker.todosEstados().forEach( locacaoMemento -> System.out.println(locacaoMemento.getEstadoLocacao())  );
+        careTaker.desfazerLocacao();
+        System.out.println("\n############");
+        System.out.println("Removido ultima locacao");
+        careTaker.todosEstados().forEach( locacaoMemento -> System.out.println(locacaoMemento.getEstadoLocacao())  );
 
     }
     
