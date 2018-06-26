@@ -5,7 +5,6 @@
  */
 package Model;
 
-import Command.PagamentoCommand;
 import Strategy.CalculaDescontoLocacao;
 import Strategy.CalculoDescontoQuinzeOuDez;
 import Strategy.CalculoDescontoVinteOuQuinze;
@@ -44,35 +43,11 @@ public class Locacao {
     public double calcularPrecoComDesconto() {
 	return estrategiaDeCalculo.calculaPrecoComDesconto(this);
     }
-    
-    
-    
-    
-    
+
     public String getInfoLoca() {
         return new String("Cliente: "+getCliente().getNome()+" Placa do carro: "+getCarro().getPlaca()+" Preco com desconto: " + calcularPrecoComDesconto()+" Preco base: "+getPrecoBase());
 	
     }
-    
-    
-
-    
-    
-    
-    
-    /*public void determinarEstrategiaDeCalculo(){
-        double base = getSalarioBase();
-        if(getCargo().equals("Gerente")){
-            estrategiaDeCalculo = new CalculoImpostoQuinzeOuDez();  
-        }
-        else if(getCargo().equals("Funcionario")){
-            estrategiaDeCalculo = new CalculoImpostoVinteOuQuinze();
-        }
-    }
-       
-    public double calcularPrecoComDesconto() {
-	return estrategiaDeCalculo.calculaSalarioComImposto(this);
-    } */
 
     public Carro getCarro() {
         return carro;

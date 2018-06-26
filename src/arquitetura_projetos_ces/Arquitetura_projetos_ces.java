@@ -7,7 +7,6 @@ package arquitetura_projetos_ces;
 
 import Controller.AluguelController;
 import Dto.HistoricoDto;
-import Dto.TextoContrato;
 import Enum.ContratoEnum;
 import Factory.ContratoFactory;
 import Factory.IContrato;
@@ -64,53 +63,17 @@ public class Arquitetura_projetos_ces {
                 System.out.println("#################");
         });
         
-        /*
-        //Strategy
-        System.out.println("\n");
-        System.out.println("##########################################");
-        System.out.println("##################### Strategy");
-        Funcionario fun1 = new Funcionario();
-        fun1.setNome("Guilherme");
-        fun1.setCargo("Funcionario");
-        fun1.setSalarioBase(4000);
-        fun1.determinarEstrategiaDeCalculo();
-        System.out.println("Salário final do "+fun1.getCargo()+" "+fun1.getNome()+": "+fun1.calcularSalarioComImposto());
-        Funcionario fun2 = new Funcionario();
-        fun2.setNome("Vinicius");
-        fun2.setCargo("Gerente");
-        fun2.setSalarioBase(4000);
-        fun2.determinarEstrategiaDeCalculo();
-        System.out.println("Salário final do "+fun2.getCargo()+" "+fun2.getNome()+": "+fun2.calcularSalarioComImposto());
-        Funcionario fun3 = new Funcionario();
-        fun3.setNome("Rafael");
-        fun3.setCargo("Sem cargo");
-        fun3.setSalarioBase(4000);
-        fun3.determinarEstrategiaDeCalculo();
-        System.out.println("Salário final do "+fun3.getCargo()+" "+fun3.getNome()+": "+ fun3.getSalarioBase());
-        
-
-        //Command
-        System.out.println("\n");
-        System.out.println("##########################################");
-        System.out.println("##################### Command");
-        cliente.executarCompra(99.00, new PagamentoCartaoCredito());
-        Cliente cliente2 = new Cliente("cnh",25,15, "Maicon","cpf");
-        cliente2.executarCompra(120.00, new PagamentoBoleto());
-        Cliente cliente3 = new Cliente("cnh",25,15, "Teste","cpf");
-        cliente3.executarCompra(140.00, new PagamentoCartaoDebito());
-        */
-        
-        
+     
         //Strategy + Command
-        //Ainda não está 100% implementado o main
-        Carro cT = new Carro(); //carro de teste, a ideia é pegar um carro já instanciado previamente, mas aqui estou instanciando um novo apenas para fazer o código funcionar
-        cT.setCategoria("A"); //categoria para poder calcular o desconto do carro
+        //Exemplo 1
+        Carro cT = new Carro();
+        cT.setCategoria("A");
         cT.setPlaca("1234F");
-        Cliente clienteT = new Cliente("cnh",25,15, "Teste","cpf"); //cliente de teste, a ideia é pegar um cliente já instanciando previamente, assim como no carro
+        Cliente clienteT = new Cliente("cnh",25,15, "Teste","cpf");
         Locacao locacaoUm =
                 clienteT.executarLocacao(200, cT, new Command.LocacaoPagamentoCartaoCredito());
         
-        //exemplo 2
+        //Exemplo 2
         Carro cT2 = new Carro();
         cT2.setCategoria("C");
         cT2.setPlaca("F4321");
@@ -118,27 +81,6 @@ public class Arquitetura_projetos_ces {
         Locacao locacaoDois =
         clienteT2.executarLocacao(550, cT2, new Command.LocacaoPagamentoCartaoDebito());
         
-
-
-        //Memento
-//        System.out.println("\n");
-//        System.out.println("##########################################");
-//        System.out.println("##################### MEMENTO");
-//        TextoContrato textoContrato = new TextoContrato();
-//        textoContrato.escreverTexto("Primeira linha do texto do contrato \n");
-//        textoContrato.escreverTexto("Segunda linha do texto do contrato\n");
-//        textoContrato.escreverTexto("Terceira linha do texto do contrato\n");
-//        textoContrato.mostrarTexto();
-//        textoContrato.desfazerEscrita();
-//        textoContrato.mostrarTexto();
-//        textoContrato.desfazerEscrita();
-//        textoContrato.mostrarTexto();
-//        textoContrato.desfazerEscrita();
-//        textoContrato.mostrarTexto();
-//        textoContrato.desfazerEscrita();
-//        textoContrato.mostrarTexto();
-
-
         //Memento utilizando Locacao do Strategy + command
         System.out.println("\n");
         System.out.println("##########################################");
@@ -156,11 +98,6 @@ public class Arquitetura_projetos_ces {
 
         originator.setEstadoLocacao(new Locacao("stub locacao Dois"));
         System.out.println("Estado Atual: " + originator.getEstadoLocacao());
-//
-//        originator.getEstadoLocacaoMemento(careTaker.get(0));
-//        System.out.println("Primeiro Estado Salvo: " + originator.getEstadoLocacao());
-//        originator.getEstadoLocacaoMemento(careTaker.get(1));
-//        System.out.println("Segundo estado salvo: " + originator.getEstadoLocacao());
 
         System.out.println("\n############");
         System.out.println("Todos estados de locacoes salvos");

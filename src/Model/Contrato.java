@@ -6,7 +6,6 @@
 package Model;
 
 import Factory.IContrato;
-import Memento.ContratoCareTaker;
 
 public class Contrato{
     
@@ -15,17 +14,15 @@ public class Contrato{
     private String nomeCliente;
     private Double taxaCarro;
     private Integer seguro;
-    ContratoCareTaker careTaker;
 
     public Contrato(String titulo, String nomeFuncionario, String nomeCliente) {
-        this.careTaker = new ContratoCareTaker();
         this.titulo = titulo;
         this.nomeFuncionario = nomeFuncionario;
         this.nomeCliente = nomeCliente;
     }
 
     public Contrato() {
-        this.careTaker = new ContratoCareTaker();
+        
     }
 
     public String getTitulo() {
