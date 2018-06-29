@@ -8,10 +8,6 @@ package Dto;
 import Factory.IContrato;
 import Model.Contrato;
 
-/**
- *
- * @author Sam
- */
 public class ContratoCarroGrande extends Contrato implements IContrato {
     
     private Integer a;

@@ -32,7 +32,7 @@ public class AluguelController {
         this.contratoFactory = new ContratoFactory();
     }
 
-    public String alugarVeiculo(Cliente cliente, ContratoEnum tipoContrato){
+    public String prepararLocacaoVeiculo(Cliente cliente, ContratoEnum tipoContrato){
          if(cliente.hasClienteIdadeMinima() && cliente.hasPermissaoParaDirigir()) {
              iContrato = contratoFactory.obterContrato(tipoContrato);
              Contrato contr = iContrato.gerarContrato();
@@ -46,7 +46,7 @@ public class AluguelController {
          return "CARRO NÃO PODE SER ALUGADO";
     }
     
-    public void alugarVeiculo(AluguelDTO aluguelDto) {
+    public void prepararLocacaoVeiculo(AluguelDTO aluguelDto) {
         
     
     }

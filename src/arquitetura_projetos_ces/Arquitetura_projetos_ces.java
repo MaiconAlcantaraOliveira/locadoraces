@@ -19,69 +19,94 @@ import java.util.Date;
 public class Arquitetura_projetos_ces {
 
     public static void main(String[] args) {
-            ContratoFactory contratoFactory = new ContratoFactory();
+        System.out.println("##########################################");
+        System.out.println("##################### FACTORY");
+        ContratoFactory contratoFactory = new ContratoFactory();
+                       
+        IContrato c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_GRANDE);;
+        Contrato c = c1.gerarContrato();
+        System.out.println("\n");
             
-            // FACTORY DE CONTRATOS, NESSE CASO ABSTRAIR OS 3 TIPOS DE CONTRATOS EM UM, A MODIFICAÇÃO
-            // DEVE SER FEITA EM CADA CLASSE ESPECIALIZADA E RETORNADA NO CONTRATO GLOBAL 
+        c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_MEDIO);
+        c = c1.gerarContrato();
+        System.out.println("\n");
             
-            IContrato c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_GRANDE);;
-            Contrato c = c1.gerarContrato();
-            System.out.println("\n");
-            
-            c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_MEDIO);
-            c = c1.gerarContrato();
-            System.out.println("\n");
-            
-            c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_PEQUENO);
-            c = c1.gerarContrato();
-            System.out.println("\n");
+        c1 = contratoFactory.obterContrato(ContratoEnum.CONTRATO_CARRO_PEQUENO);
+        c = c1.gerarContrato();
+        System.out.println("\n");
             
             
         //CONTROLLER
         System.out.println("CONTROLLER");
-        Cliente cliente = new Cliente("cnh",25,15, "jout jout","cpf");
+        Cliente cliente = new Cliente("321321321",25,15, "Joao","33333333333");
         AluguelController aluguelController = new AluguelController();
         System.out.println(
-            aluguelController.alugarVeiculo(cliente, ContratoEnum.CONTRATO_CARRO_MEDIO)
+            aluguelController.prepararLocacaoVeiculo(cliente, ContratoEnum.CONTRATO_CARRO_MEDIO)
         );
             
         // SINGLETON
+        System.out.println("\n");
+        System.out.println("##########################################");
+        System.out.println("##################### SINGLETON");
         HistoricoSingleton.obterInstanciaHistorio()
-                .setItemHistorico(new HistoricoDto("no main", "madeira", "vovo", new Date()));
+                .setItemHistorico(new HistoricoDto("Sinio", "Medeira", "Gol", new Date()));
  
-        //Caso tenha dois itens no historicos, singleton esta ok 
+        
         System.out.println("itens historico: " + HistoricoSingleton.obterInstanciaHistorio()
                                                  .getItensHistorico().size());
         
         HistoricoSingleton.obterInstanciaHistorio().getItensHistorico().forEach((t) -> {
             System.out.println("\n");
             System.out.println("#################");
-            System.out.println("novoModelo: " + t.getModeloCarro());
-             System.out.println("novoFunc: " + t.getNomeFuncionario());
-              System.out.println("novCliente: " + t.getNomeCliente());
-               System.out.println("novaData: " + t.getDataLocacao());
-                System.out.println("#################");
+            System.out.println("Cliente: " + t.getNomeCliente());
+            System.out.println("Data: " + t.getDataLocacao());
+            System.out.println("#################");
         });
         
      
-        //Strategy + Command
+        //Strategy + Command (Com Factory de contrato e Singleton de histórico)
+        System.out.println("\n");
+        System.out.println("##########################################");
+        System.out.println("##################### STRATEGY + COMMAND");
         //Exemplo 1
         Carro cT = new Carro();
         cT.setCategoria("A");
         cT.setPlaca("1234F");
-        Cliente clienteT = new Cliente("cnh",25,15, "Teste","cpf");
-        Locacao locacaoUm =
-                clienteT.executarLocacao(200, cT, new Command.LocacaoPagamentoCartaoCredito());
+        cT.setModelo("Modelo1");
+        cT.setAnoCarro("2016");
+        cT.setCor("Vermelho");
+        cT.setMultaVeiculo(0);
+        Cliente clienteT = new Cliente("121212",25,15, "Guilherme","11111111111");
+        
+        //CONTROLLER
+        System.out.println("CONTROLLER");
+        
+        
+        Locacao locacaoUm = null;
+        if(aluguelController.prepararLocacaoVeiculo(clienteT, ContratoEnum.CONTRATO_CARRO_MEDIO).equals("ALUGAR CARRO")){
+           locacaoUm = clienteT.executarLocacao(200, cT, new Command.LocacaoPagamentoCartaoCredito()); 
+        }
+        
         
         //Exemplo 2
         Carro cT2 = new Carro();
         cT2.setCategoria("C");
         cT2.setPlaca("F4321");
-        Cliente clienteT2 = new Cliente("cnh",25,15, "Maicon","cpf");
-        Locacao locacaoDois =
-        clienteT2.executarLocacao(550, cT2, new Command.LocacaoPagamentoCartaoDebito());
+        cT2.setModelo("Modelo2");
+        cT2.setAnoCarro("2017");
+        cT2.setCor("Preto");
+        cT2.setMultaVeiculo(0);
+        Cliente clienteT2 = new Cliente("212121",25,15, "Maicon","22222222222");
         
-        //Memento utilizando Locacao do Strategy + command
+        
+        Locacao locacaoDois = null;
+        if(aluguelController.prepararLocacaoVeiculo(clienteT2, ContratoEnum.CONTRATO_CARRO_GRANDE).equals("ALUGAR CARRO")){
+           locacaoDois = clienteT2.executarLocacao(550, cT2, new Command.LocacaoPagamentoCartaoDebito()); 
+        }
+        
+        
+        
+        //Memento utilizando Locacao do Strategy + Command
         System.out.println("\n");
         System.out.println("##########################################");
         System.out.println("##################### MEMENTO");
@@ -101,12 +126,33 @@ public class Arquitetura_projetos_ces {
 
         System.out.println("\n############");
         System.out.println("Todos estados de locacoes salvos");
-        careTaker.todosEstados().forEach( locacaoMemento -> System.out.println(locacaoMemento.getEstadoLocacao())  );
+        careTaker.todosEstados().forEach( locacaoMemento -> System.out.println(locacaoMemento.getEstadoLocacao()));
         careTaker.desfazerLocacao();
         System.out.println("\n############");
         System.out.println("Removido ultima locacao");
-        careTaker.todosEstados().forEach( locacaoMemento -> System.out.println(locacaoMemento.getEstadoLocacao())  );
+        careTaker.todosEstados().forEach( locacaoMemento -> System.out.println(locacaoMemento.getEstadoLocacao()));
 
+        // SINGLETON ATUALIZADO
+        System.out.println("\n");
+        System.out.println("##########################################");
+        System.out.println("##################### SINGLETON ATUALIZADO - EXIBINDO HISTORICO DAS LOCACOES NOVAS");
+        
+ 
+        
+        System.out.println("itens historico: " + HistoricoSingleton.obterInstanciaHistorio()
+                                                 .getItensHistorico().size());
+        
+        HistoricoSingleton.obterInstanciaHistorio().getItensHistorico().forEach((t) -> {
+            System.out.println("\n");
+            System.out.println("#################");
+            System.out.println("Cliente: " + t.getNomeCliente());
+            System.out.println("Data: " + t.getDataLocacao());
+            System.out.println("#################");
+        });
+    
+    
+    
+    
     }
     
 }

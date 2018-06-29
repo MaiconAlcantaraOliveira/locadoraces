@@ -7,10 +7,6 @@ package Dto;
 
 import java.util.Date;
 
-/**
- *
- * @author Sam
- */
 public class HistoricoDto {
     
     private String nomeCliente;

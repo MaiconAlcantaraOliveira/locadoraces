@@ -8,10 +8,6 @@ package Dto;
 import Factory.IContrato;
 import Model.Contrato;
 
-/**
- *
- * @author Sam
- */
 public class ContratoCarroMedio extends Contrato implements IContrato {
 
     @Override

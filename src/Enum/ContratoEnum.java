@@ -5,10 +5,6 @@
  */
 package Enum;
 
-/**
- *
- * @author Sam
- */
 public enum ContratoEnum {
     
     CONTRATO_CARRO_PEQUENO,

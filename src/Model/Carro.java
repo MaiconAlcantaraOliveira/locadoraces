@@ -7,10 +7,6 @@ package Model;
 
 import Factory.ICarro;
 
-/**
- *
- * @author Sam
- */
 public class Carro implements ICarro{
     
     private String modelo;

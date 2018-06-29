@@ -13,7 +13,7 @@ public final class HistoricoSingleton {
 
     protected HistoricoSingleton() {
         this.itensHistorico = new ArrayList<HistoricoDto>();
-        this.itensHistorico.add(new HistoricoDto("nomeCliente", "nomeFuncionario", "modeloCarro", new Date()));
+        //this.itensHistorico.add(new HistoricoDto("nomeCliente", "nomeFuncionario", "modeloCarro", new Date()));
     }
     
     public static synchronized HistoricoSingleton obterInstanciaHistorio(){
