@@ -52,7 +52,7 @@ public class Arquitetura_projetos_ces {
                 .setItemHistorico(new HistoricoDto("Sinio", "Medeira", "Gol", new Date()));
  
         
-        System.out.println("itens historico: " + HistoricoSingleton.obterInstanciaHistorio()
+        System.out.println("Total de itens no historico: " + HistoricoSingleton.obterInstanciaHistorio()
                                                  .getItensHistorico().size());
         
         HistoricoSingleton.obterInstanciaHistorio().getItensHistorico().forEach((t) -> {
@@ -139,7 +139,7 @@ public class Arquitetura_projetos_ces {
         
  
         
-        System.out.println("itens historico: " + HistoricoSingleton.obterInstanciaHistorio()
+        System.out.println("Total de itens no historico: " + HistoricoSingleton.obterInstanciaHistorio()
                                                  .getItensHistorico().size());
         
         HistoricoSingleton.obterInstanciaHistorio().getItensHistorico().forEach((t) -> {
